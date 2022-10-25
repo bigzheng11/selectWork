@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./vue.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+        />
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    </head>
+    <!-- 
+开发一个简单搜索页面（没有效果图，界面自由发挥，尽可能的表现你所学的知识），功能包括搜索框、搜索结果。
+
+要求：代码尽可能的原创，框架不限，时间不超过3天。
+ -->
+    <body>
+        <div id="app">
+            <h1>使用Vue+Element-Ui 实现搜索</h1>
+            <el-input
+                type="textarea"
+                :rows="2"
+                placeholder="请输入内容"
+                v-model="textarea"
+            >
+            </el-input>
+        </div>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    textarea: "",
+                },
+                methods: {},
+            });
+        </script>
+    </body>
+</html>

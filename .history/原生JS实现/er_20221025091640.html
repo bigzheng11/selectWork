@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <style>
+            .gg {
+                color: gray;
+            }
+            .bb {
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <!--<!–<input type="text" placeholder="请输入内容" />–>  /*下面代码实现这个功能*/-->
+
+        <input
+            type="text"
+            class="gg"
+            value="请输入内容"
+            onfocus="Focus(this);"
+            onblur="Blur(this);"
+        />
+
+        <script>
+            function Focus(ths) {
+                //焦点事件
+                //查找
+                ths.className = "bb";
+                var current_val = ths.value;
+                if (current_val == "请输入内容") {
+                    ths.value = "";
+                }
+            }
+            function Blur(ths) {
+                //失去焦点
+                var current_val = ths.value;
+                if (
+                    current_val == "请输入内容" ||
+                    current_val.trim().length == 0
+                ) {
+                    ths.value = "请输入内容";
+                    ths.className = "gg";
+                }
+            }
+        </script>
+    </body>
+</html>

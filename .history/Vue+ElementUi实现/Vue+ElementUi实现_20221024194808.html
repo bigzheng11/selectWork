@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./vue.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+        />
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                width: 100%;
+                height: 78vh;
+                /* background-color: slategrey; */
+                background-image: linear-gradient(
+                    125deg,
+                    #2c3e50,
+                    #27ae60,
+                    #2980b9,
+                    #e74c3c,
+                    #8e44ad
+                );
+                background-size: 400%;
+
+                /* infinite-动画效果无限重复 */
+                animation: bganimation 25s infinite;
+
+                /* 毛玻璃 */
+            }
+
+            @keyframes bganimation {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+            #app {
+                background-color: aliceblue;
+                width: 50%;
+                margin: 200px auto;
+                padding: 30px;
+                border-radius: 30px;
+                box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.2);
+            }
+        </style>
+    </head>
+    <!-- 
+    开发一个简单搜索页面（没有效果图，界面自由发挥，尽可能的表现你所学的知识），功能包括搜索框、搜索结果。
+    要求：代码尽可能的原创，框架不限，时间不超过3天。
+    -->
+    <body>
+        <div id="app">
+            <h1 style="text-align: center">使用Vue+Element-Ui 实现搜索</h1>
+            <div style="width: 40%; margin: 10px auto">
+                <!-- 搜索框 -->
+                <el-row class="demo-autocomplete">
+                    <el-col :span="12">
+                        <div class="sub-title">输入后匹配输入建议</div>
+                        <el-autocomplete
+                            class="inline-input"
+                            v-model="state2"
+                            :fetch-suggestions="querySearch"
+                            placeholder="请输入内容"
+                            :trigger-on-focus="false"
+                            @select="handleSelect"
+                        ></el-autocomplete>
+                    </el-col>
+                </el-row>
+                <!-- 空白栏 -->
+                <div
+                    style="width: 400px; height: 300px; margin: 10px auto; marg"
+                    ref="empty"
+                >
+                    <el-empty description="描述文字"></el-empty>
+                </div>
+            </div>
+        </div>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    restaurants: [],
+                    state2: "",
+                },
+                methods: {
+                    // 输入一段时间后触发
+                    querySearch(queryString, cb) {
+                        var restaurants = this.restaurants;
+                        var results = queryString
+                            ? restaurants.filter(this.createFilter(queryString))
+                            : restaurants;
+                        // 调用 callback 返回建议列表的数据
+                        cb(results);
+                    },
+                    // 输入一段时间后触发
+                    createFilter(queryString) {
+                        return (restaurant) => {
+                            return (
+                                restaurant.value
+                                    .toLowerCase()
+                                    .indexOf(queryString.toLowerCase()) === 0
+                            );
+                        };
+                    },
+                    //选择提示框的内容后触发
+                    handleSelect(item) {
+                        let empty = this.$refs.empty;
+                        empty.innerHTML = `<H1 style:" margin-Top:30px">${item.value}</H1>`;
+                        console.log(item);
+                    },
+                    loadAll() {
+                        return [
+                            {
+                                value: "三全鲜食（北新泾店）",
+                            },
+                            {
+                                value: "Hot honey 首尔炸鸡（仙霞路）",
+                            },
+                            {
+                                value: "新旺角茶餐厅",
+                            },
+                            {
+                                value: "泷千家(天山西路店)",
+                            },
+                            {
+                                value: "胖仙女纸杯蛋糕（上海凌空店）",
+                            },
+                            {
+                                value: "贡茶",
+                            },
+                            {
+                                value: "豪大大香鸡排超级奶爸",
+                            },
+                            {
+                                value: "茶芝兰（奶茶，手抓饼）",
+                            },
+                            {
+                                value: "十二泷町",
+                            },
+                            {
+                                value: "星移浓缩咖啡",
+                            },
+                            {
+                                value: "阿姨奶茶/豪大大",
+                            },
+                            {
+                                value: "新麦甜四季甜品炸鸡",
+                            },
+                            {
+                                value: "Monica摩托主题咖啡店",
+                            },
+                            {
+                                value: "浮生若茶（凌空soho店）",
+                            },
+                            {
+                                value: "NONO JUICE  鲜榨果汁",
+                            },
+                            {
+                                value: "CoCo都可(北新泾店）",
+                            },
+                            {
+                                value: "快乐柠檬（神州智慧店）",
+                            },
+                            {
+                                value: "Merci Paul cafe",
+                            },
+                            {
+                                value: "猫山王（西郊百联店）",
+                            },
+                            { value: "枪会山" },
+                            {
+                                value: "纵食",
+                            },
+                            { value: "钱记", address: "上海市长宁区天山西路" },
+                            { value: "壹杯加", address: "上海市长宁区通协路" },
+                        ];
+                    },
+                },
+                mounted() {
+                    this.restaurants = this.loadAll();
+                },
+            });
+        </script>
+    </body>
+</html>

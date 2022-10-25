@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input
+            type="text"
+            id="myInput"
+            onkeyup="myFunction()"
+            placeholder="搜索..."
+        />
+        <!-- onkeyup键盘输入事件 -->
+
+        <ul id="myUL">
+            <li>
+                <div style="border: ;1">
+                    <a href="#" class="header">A</a>
+                </div>
+            
+            </li>
+            <li><a href="#">Adele</a></li>
+            <li><a href="#">Agnes</a></li>
+            <li><a href="#" class="header">B</a></li>
+            <li><a href="#">Billy</a></li>
+            <li><a href="#">Bob</a></li>
+            <li><a href="#" class="header">C</a></li>
+            <li><a href="#">Calvin</a></li>
+            <li><a href="#">Christina</a></li>
+            <li><a href="#">Cindy</a></li>
+        </ul>
+        <script>
+            function myFunction() {
+                // 声明变量
+                var input, filter, ul, li, a, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                ul = document.getElementById("myUL");
+                li = ul.getElementsByTagName("li");
+
+                let temp = 0;
+                // 循环所有列表，查找匹配项
+                for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        li[i].style.display = "";
+                        temp += 1;
+                    } else {
+                        li[i].style.display = "none";
+                    }
+                    if (temp == 0) {
+                        console.log("没有匹配项");
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
