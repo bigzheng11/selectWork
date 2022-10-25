@@ -1,9 +1,11 @@
-##Vue+Element-Ui实现
+Vue+Element-Ui实现
+====================
 业务逻辑与之前的原生JS差不多,就不再复述了。主要使用了Element-ui的搜索,方法和数据没太大改动
-在线预览地址:
+### 在线预览地址:
+https://bigzheng11.github.io/selectWork/Vue_ElementUi/index2.html
 
 
-搜索数据:
+### 搜索数据:
  return [
 {value: "三全鲜食（北新泾店）"},
 {value: "Hot honey 首尔炸鸡（仙霞路）"},
